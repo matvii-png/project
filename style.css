@@ -1,0 +1,249 @@
+/* 1. Глобальні стилі */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background-color: #f0f4f7;
+    color: #2c3e50;
+    line-height: 1.6;
+}
+
+/* 2. Шапка та Меню */
+.header-main {
+    background-color: #27ae60; /* Зелений верх */
+    color: white;
+    text-align: center;
+}
+
+.nav-menu {
+    background-color: #1a5276; /* Синя навігація */
+    padding: 15px 0;
+    display: flex;
+    justify-content: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-item {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+
+.nav-item:hover {
+    color: #2ecc71;
+}
+
+.header-logo {
+    padding: 40px 20px;
+}
+
+.header-logo h1 {
+    margin: 0;
+    font-size: 3rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+}
+
+/* 3. Контейнер та Секції */
+.container {
+    max-width: 1100px;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+section {
+    background: white;
+    margin-bottom: 40px;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.section-title {
+    color: #1a5276;
+    margin-bottom: 30px;
+    border-left: 5px solid #27ae60;
+    padding-left: 15px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+/* 4. Про нас (Flexbox) */
+.about-content {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.about-text {
+    flex: 1;
+    min-width: 300px;
+}
+
+.about-media {
+    flex: 1;
+    min-width: 300px;
+}
+
+.img-responsive {
+    width: 100%;
+    border-radius: 10px;
+}
+
+/* 5. Каталог (Grid) */
+.catalog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.product-card {
+    border: 1px solid #eee;
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-10px);
+    border-color: #27ae60;
+}
+
+.product-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.product-name {
+    color: #1a5276;
+    margin: 15px 0 10px;
+}
+
+.product-price {
+    font-weight: bold;
+    color: #27ae60;
+    font-size: 1.2rem;
+    margin-top: 10px;
+}
+
+/* 6. Відгуки */
+.review-block {
+    display: flex;
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    align-items: center;
+    gap: 20px;
+}
+
+.user-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* 7. Карта та Футер */
+.map-img {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.address-list {
+    list-style: none;
+    padding: 0;
+}
+
+.address-entry {
+    padding: 8px 0;
+    border-bottom: 1px dashed #ddd;
+}
+
+.footer-main {
+    background-color: #1a5276;
+    color: white;
+    text-align: center;
+    padding: 40px 20px;
+}
+
+/* Анімація підкреслення для пунктів меню */
+.nav-item {
+    position: relative; /* Необхідно для позиціювання лінії */
+    text-decoration: none;
+    padding-bottom: 5px;
+}
+
+.nav-item::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0); /* Початково лінія має нульову довжину */
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #2ecc71; /* Колір лінії (світло-зелений) */
+    transform-origin: bottom right;
+    transition: transform 0.4s ease-out; /* Швидкість анімації */
+}
+
+/* 1. Анімація появи тексту (Fade In + Blur) */
+@keyframes textReveal {
+    0% {
+        opacity: 0;
+        filter: blur(10px);
+        transform: translateX(-20px);
+    }
+    100% {
+        opacity: 1;
+        filter: blur(0);
+        transform: translateX(0);
+    }
+}
+
+/* 2. Анімація для фото (легке збільшення) */
+@keyframes avatarPop {
+    0% { transform: scale(0.8); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* Застосовуємо до існуючих класів вашого HTML */
+
+.review-text {
+    display: block; /* гарантуємо правильне відображення анімації */
+    animation: textReveal 1.2s ease-out forwards;
+}
+
+.user-avatar {
+    animation: avatarPop 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+/* Додамо цікавий ефект: при наведенні на блок відгуку, текст стає трохи яскравішим */
+.review-block {
+    transition: all 0.3s ease;
+    cursor: default;
+}
+
+.review-block:hover {
+    background-color: #f0f9f4; /* дуже світлий зелений */
+    border-left-color: #2ecc71; /* змінюємо колір полоски на світло-зелений */
+    transform: scale(1.02); /* легке збільшення всього блоку */
+}
+
+.review-block:hover .review-text {
+    color: #1a5276; /* текст стає насичено синім при наведенні */
